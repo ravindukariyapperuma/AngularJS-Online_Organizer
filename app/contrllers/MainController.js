@@ -1,6 +1,13 @@
-app.controller('MainController', ['$scope', $scope => {
-    $scope.list = ['task 1', 'task 2', 'task 3'];
-    $scope.addItem = () => {
-        $scope.list.push($scope.addToDo);
+app.controller('MainController',['$scope', $scope => {
+    $scope.list = [];
+    $scope.addEvent = () => {
+        $scope.list.push({event:$scope.addOrganize,complete:false});
+    };
+    $scope.removeEvent = () => {
+        let oldList = $scope.list;
+        $scope.list = [];
+        angular.forEach(oldList, (checked) => {
+            if (!checked.done) $scope.list.push(checked);
+        });
     }
 }]);
